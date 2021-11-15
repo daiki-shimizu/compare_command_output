@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - set_fact:
+        adjusted_cmd: "{{ cmd | replace(' ','_') }}"
+    - set_fact:
+        adjusted_path: "/tmp/{{ adjusted_cmd }}_adjusted.txt"
+    - command:
+        cmd: "diff -u files/{{ adjusted_cmd }}.txt {{ adjusted_path }}"
+      register: result
+      delegate_to: localhost
+      failed_when: false
+    - debug:
+        msg: "{{ result }}"
+           

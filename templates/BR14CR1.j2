@@ -1,0 +1,6 @@
+//{{ FTP_USERID }}1  JOB CLASS={{ FTP_JOB_CLASS }},MSGLEVEL=(1,1),MSGCLASS={{ FTP_JOB_MSGCLASS }}
+//STEP EXEC PGM=IEFBR14
+//ALLOC DD DSN={{ dataset_name }},
+//      DISP=(,CATLG),UNIT=SYSDA,               
+//      SPACE=(TRK,(1,1),RLSE),                 
+//      DCB=(RECFM=FB,LRECL=80,BLKSIZE=24000)   

@@ -1,0 +1,10 @@
+---
+FTP_USERID: userid
+FTP_PASSWORD: password
+FTP_HOST: server1
+FTP_JOB_CLASS: "A"
+FTP_JOB_MSGCLASS: "K"
+FTP_SOCKS_PORT: ""
+command: "LU IBMUSER"
+cmd: "D IPLINFO"
+dataset_name: "DAIKI.TEST.BR14L"

@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  collections: 
+    - ibm.ibm_zos_core_ftp
+  gather_facts: no
+  environment:
+    FTP_USERID: "{{ FTP_USERID }}"
+    FTP_PASSWORD: "{{ FTP_PASSWORD }}"
+    FTP_HOST: "{{ FTP_HOST }}"
+    FTP_JOB_CLASS: "{{ FTP_JOB_CLASS }}"
+    FTP_JOB_MSGCLASS: "{{ FTP_JOB_MSGCLASS }}"
+    FTP_SOCKS_PORT: "{{ FTP_SOCKS_PORT }}"
+
+  vars:
+    member_name: "BR14CR1"
+  tasks:
+    - template:
+        src: "{{ member_name }}.j2"
+        dest: "/tmp/{{ member_name }}" 
+    - zos_job_submit:
+        src: "/tmp/{{ member_name }}"
+        location: LOCAL
+      register: result
+    - debug:
+        msg: "{{ result }}"

@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  collections: 
+    - ibm.ibm_zos_core_ftp
+  gather_facts: no
+  environment:
+    FTP_USERID: "{{ FTP_USERID }}"
+    FTP_PASSWORD: "{{ FTP_PASSWORD }}"
+    FTP_HOST: "{{ FTP_HOST }}"
+    FTP_JOB_CLASS: "{{ FTP_JOB_CLASS }}"
+    FTP_JOB_MSGCLASS: "{{ FTP_JOB_MSGCLASS }}"
+    FTP_SOCKS_PORT: "{{ FTP_SOCKS_PORT }}"
+
+  tasks:
+    - zos_tso_command:
+        commands:
+          - "{{ command }}"
+      register: result
+    - debug:
+        msg: "{{ result }}"
+
